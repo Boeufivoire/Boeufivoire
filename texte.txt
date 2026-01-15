@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boeuf Ivoire - Boutique Officielle</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5}
+header{background:#184d2a;color:white;padding:20px;text-align:center}
+nav{background:#123b1f;padding:10px;text-align:center}
+nav a{color:white;margin:0 10px;text-decoration:none;font-weight:bold}
+section{padding:30px}
+.card{background:white;border-radius:10px;padding:20px;margin:15px 0}
+button{background:#25D366;color:white;border:none;padding:10px 20px;border-radius:6px}
+footer{background:#184d2a;color:white;text-align:center;padding:15px}
+h2{color:#184d2a}
+</style>
+
+<script>
+let panier=[];
+
+function ajouter(nom,prix){
+panier.push({nom,prix});
+afficher();
+}
+
+function afficher(){
+let html="";
+let total=0;
+panier.forEach((p,i)=>{
+html+=i+1+" - "+p.nom+" : "+p.prix+" FCFA<br>";
+total+=prixVal(p.prix);
+});
+document.getElementById("panier").innerHTML=html+"<b>Total : "+total+" FCFA</b>";
+}
+
+function prixVal(p){
+return p=="sur demande"?0:p;
+}
+
+function commander(){
+let msg="Bonjour Boeuf Ivoire, je souhaite commander:%0A";
+panier.forEach(p=>{
+msg+="- "+p.nom+" ("+p.prix+" FCFA)%0A";
+});
+window.open("https://wa.me/225789890700?text="+msg);
+}
+</script>
+</head>
+
+<body>
+
+<header>
+<h1>BOEUF IVOIRE</h1>
+<p>La viande qui a du cœur ❤️</p>
+<p>Viande HALAL - Boutique officielle</p>
+</header>
+
+<nav>
+<a href="#boutique">Boutique</a>
+<a href="#panier">Panier</a>
+<a href="#paiement">Paiement</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section id="boutique">
+<h2>🛒 Nos produits</h2>
+
+<div class="card">
+<h3>🥩 Bœuf avec os</h3>
+<p>2750 FCFA / kg</p>
+<button onclick="ajouter('Boeuf avec os',2750)">Ajouter</button>
+</div>
+
+<div class="card">
+<h3>🥩 Bœuf sans os</h3>
+<p>3000 FCFA / kg</p>
+<button onclick="ajouter('Boeuf sans os',3000)">Ajouter</button>
+</div>
+
+<div class="card">
+<h3>🐄 Pattes de bœuf</h3>
+<p>Sur demande</p>
+<button onclick="ajouter('Pattes de boeuf','sur demande')">Ajouter</button>
+</div>
+
+<div class="card">
+<h3>🐄 Tête de bœuf</h3>
+<p>Sur demande</p>
+<button onclick="ajouter('Tête de boeuf','sur demande')">Ajouter</button>
+</div>
+
+<div class="card">
+<h3>🐏 Pattes & têtes de mouton</h3>
+<p>Sur demande</p>
+<button onclick="ajouter('Pattes et têtes de mouton','sur demande')">Ajouter</button>
+</div>
+
+</section>
+
+<section>
+<h2>🧺 Votre panier</h2>
+<div id="panier">Panier vide</div>
+<br>
+<button onclick="commander()">Commander via WhatsApp</button>
+</section>
+
+<section id="paiement">
+<h2>💳 Paiement accepté</h2>
+<p>✔ Wave</p>
+<p>✔ Orange Money</p>
+<p>✔ MTN Money</p>
+<p>✔ Paiement à la livraison</p>
+<p><i>Les détails de paiement sont envoyés sur WhatsApp</i></p>
+</section>
+
+<section>
+<h2>🏢 À propos</h2>
+<p>
+Boeuf Ivoire est une entreprise spécialisée dans la vente de viande HALAL fraîche.
+Nous offrons qualité, hygiène, prix accessibles et livraison rapide.
+</p>
+</section>
+
+<section id="contact">
+<h2>📞 Contact</h2>
+<p>WhatsApp : 0789890700</p>
+<p>Email : boeufivoire@boeufivoire6.com</p>
+</section>
+
+<footer>
+<p>© 2026 Boeuf Ivoire</p>
+<p>Votre partenaire HALAL</p>
+</footer>
+
+</body>
+</html>
